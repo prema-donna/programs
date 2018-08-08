@@ -19,7 +19,7 @@ class Hitter{
 				}
 			}
 			if(cat == "R" || cat == "RUN" || cat == "1B" || cat == "2B" || cat == "3B" || cat == "HR" || cat == "RBI" || cat == "BB" || cat == "K" || cat == "SB" ||
-			   cat == "SH" || cat == "GS" || cat == "SO") 
+			   cat == "SH" || cat == "GS" || cat == "SO" || cat == "CS") 
 				categories.push_back(cat);
 			else{
 				cout<<"Invalid category!\n";
@@ -45,6 +45,7 @@ class Hitter{
 		void print_all_categories(){
 			vector<string> cats = get_cats();
 			int count = 0;
+			cout<<"                    ";
 			for(int i= 0; i< cats.size(); i++){
 				if(cats[i] == "R"){
 					categories[count] = cats[i];
@@ -101,6 +102,13 @@ class Hitter{
 			}
 			for(int i= 0; i<cats.size(); i++){
 				if(cats[i] == "SB"){
+					categories[count] = cats[i];
+					++count;
+					cout<<"  "<<cats[i];
+				}
+			}
+			for(int i= 0; i<cats.size(); i++){
+				if(cats[i] == "CS"){
 					categories[count] = cats[i];
 					++count;
 					cout<<"  "<<cats[i];
@@ -176,6 +184,7 @@ class Pitcher{
 		void print_all_categories(){
 			vector<string> cats = get_cats();
 			int count = 0;
+			cout<<"                    ";
 			for(int i= 0; i<cats.size(); i++){
 				if(cats[i] == "IP"){
 					categories[count] = cats[i];
@@ -279,6 +288,70 @@ class Pitcher{
 		}
 };
 
+class Player:Hitter,Pitcher{
+	private:
+		string name;
+		Hitter h;
+		Pitcher p;
+		vector<string> cats;
+		int value;
+		vector<int> statline;
+	public:
+		Player(string player, Hitter a){
+			name = player;
+			h = a;
+		}		
+		Player(string player, Pitcher b){
+			name = player;
+			p = b;
+		}
+		void player_prompt(bool is_hitter){
+			if (is_hitter == true){
+				cats = h.get_cats();
+			}
+			else if(is_hitter == false){
+				cats = p.get_cats();
+			}
+			for(int i= 0; i<cats.size(); i++){
+				if(cats[i] == "IP"){
+					cout<<"Enter "<<name<<"'s value for "<<cats[i]<<", to the nearest integer\n";
+				}
+				else{
+					cout<<"Enter "<<name<<"'s value for "<<cats[i]<<"\n";
+				}
+				cin>>value;
+				statline.push_back(value);
+			}
+			cout<<"\n";
+		}
+		void print_player_info(bool is_hitter){
+			if(is_hitter == true){
+				h.print_all_categories();
+			}
+			else if(is_hitter == false){
+				p.print_all_categories();
+			}
+			cout<<name;
+			int space_length= 20- name.length();
+			while(space_length >0){
+				cout<<" ";
+				--space_length;
+			}
+			for(int i= 0; i<statline.size(); i++){
+				if (statline[i]/10 == 0){
+					cout<<"   "<<statline[i];  
+				}
+				else if(statline[i]/100 == 0){
+					cout<<"  "<<statline[i];
+				}
+				else if(statline[i]/1000 == 0){
+					cout<<" "<<statline[i];
+				}
+			}
+			cout<<"\n";
+		}
+};
+
 int main(){
 	Hitter h;
 	h.prompt();
@@ -288,5 +361,14 @@ int main(){
 	p.prompt();
 	p.print_all_categories();
 	
+	Player barry_bonds("BarryBonds2001", h);
+	barry_bonds.player_prompt(true);
+	barry_bonds.print_player_info(true);
+	Player alex_rodriguez("AlexRodriguez2007", h);
+	alex_rodriguez.player_prompt(true);
+	alex_rodriguez.print_player_info(true);
+	Player clayton_kershaw("ClaytonKershaw2014", p);
+	clayton_kershaw.player_prompt(false);
+	clayton_kershaw.print_player_info(false);
 	return 0;
 }
