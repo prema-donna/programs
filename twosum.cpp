@@ -1,5 +1,5 @@
 #include<iostream>
-#include<stdlib.h>
+#include<cstdlib>
 #include<vector>
 
 using namespace std;
@@ -17,7 +17,7 @@ vector<pair<int,int>> twoSum(vector<int> &nums, int target){
 } 
 
 int main(){
-	int target = 9;
+	int target = 16;
 	vector<int> nums;
 	nums.push_back(2);
 	nums.push_back(7);
@@ -28,7 +28,7 @@ int main(){
 	
 	vector<pair<int,int>> sum = twoSum(nums,target);
 	
-	cout<<"indices with sum: ["<<sum[0].first<<","<<sum[0].second<<"]"<<endl;;
+	cout<<"Indices ["<<sum[0].first<<","<<sum[0].second<<"]"<<" added together equal "<<target<<endl;;
 	
 	return 0;
 }

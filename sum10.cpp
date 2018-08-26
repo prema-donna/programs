@@ -69,14 +69,8 @@ class Utility : Pair{
 
 int main(){
 	//the main assumption that I make is that I am not required to write a parser
-	vector<int> nums;
+	vector<int> nums = {-1, 0, 11, -5, 15, 10};
 	vector<pair<int,int>> pair_nums;
-	nums.push_back(-1);
-	nums.push_back(0);
-	nums.push_back(11);
-	nums.push_back(-5);
-	nums.push_back(15);
-	nums.push_back(10);
 	
 	Utility object(nums,pair_nums);
 	object.isEqualTen(nums);
