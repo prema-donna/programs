@@ -2,6 +2,9 @@ using System;
 
 namespace Concatenation {
 	class Name {
+		private string first_name;
+		private string middle_name;
+		private string last_name;
 		private string FullName(string a, string b, string c){
 			string full_name_with_space = a +" "+ b +" "+ c;
 			return full_name_with_space;
@@ -27,16 +30,16 @@ namespace Concatenation {
 			return sum;
 		}
 		static void Main(string[] args){
-			string first_name = "Akila";
-			string middle_name = "Wirane";
-			string last_name = "Premachandra";
-			string word = "AWP";
 			Name n = new Name();
+			n.first_name = "Akila";
+			n.middle_name = "Wirane";
+			n.last_name = "Premachandra";
+			string word = "AWP";
 			
-			string my_name = n.FullName(first_name,middle_name,last_name);
+			string my_name = n.FullName(n.first_name,n.middle_name,n.last_name);
 			Console.WriteLine("My name is {0}", my_name);
 			
-			int ASCII = n.ASCIIsum(first_name,middle_name,last_name);
+			int ASCII = n.ASCIIsum(n.first_name,n.middle_name,n.last_name);
 			Console.WriteLine("ASCII sum of name = {0}", ASCII);
 			
 			string aID = n.AlphaNumericID(word,ASCII);

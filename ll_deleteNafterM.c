@@ -105,6 +105,12 @@ void delete_node(struct Node **head_ref, int position)
  
     temp->next = next;  // Unlink the deleted node from list
 }
+
+void insert_node(int data, int index){
+	struct Node* temp = 
+	
+	
+}
  
 // Driver program to test above functions
 int main()
@@ -126,9 +132,13 @@ int main()
  
     printf("M = %d, N = %d \nGiven Linked list is :\n", M, N);
     printList(head);
- 
+	
+	int data= 12;
+	int index = 3;
+	
     //skipMdeleteN(head, M, N);
-	delete_node(&head,M);
+	//delete_node(&head,M);
+	insert_node(data,index);
 	
     printf("\nLinked list after deletion is :\n");
     printList(head);

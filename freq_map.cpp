@@ -30,7 +30,7 @@ vector<int> freq_count(vector<int> input, int k){
 	
 	for(int i= 0; i< input.size(); i++){
 		if(map.find(input[i]) == map.end()){
-			map.insert(make_pair(input[i],1));
+			map.insert({input[i],1});
 		}
 		else{
 			map[input[i]] += 1;
